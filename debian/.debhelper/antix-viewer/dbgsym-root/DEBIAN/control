@@ -1,0 +1,14 @@
+Package: antix-viewer-dbgsym
+Source: antix-viewer
+Version: 0.1.0
+Auto-Built-Package: debug-symbols
+Architecture: amd64
+Maintainer: anticapitalista <anticapitalista@riseup.net>
+Installed-Size: 403
+Depends: antix-viewer (= 0.1.0)
+Section: debug
+Priority: extra
+Homepage: https://github.com/AdrianTM/mx-viewer
+Description: Debug symbols for antix-viewer
+Build-Ids: d2b403a152a3a1143d677c58746e2fccf0462302
+Original-Maintainer: Adrian; MX Linux <http://mxlinux.org>

@@ -1,0 +1,21 @@
+Source: antix-viewer
+Section: system
+Priority: optional
+Maintainer: anticapitalista <anticapitalista@riseup.net>
+XSBC-Original-Maintainer: Adrian; MX Linux <http://mxlinux.org>
+Build-Depends: debhelper (>= 9.20120115),
+	qt5-qmake,
+	qt5-default,
+	qttools5-dev-tools,
+        libqt5webkit5-dev
+Standards-Version: 3.9.8
+Homepage: https://github.com/AdrianTM/mx-viewer
+
+Package: antix-viewer
+Architecture: any
+Depends: ${misc:Depends}, ${shlibs:Depends}
+Provides: x-www-browser 
+Description: Displays a URL in a window
+ antiX Viewer displays a URL in a new window. It's an utility program used for
+ displaying help information by various antiX Linux utilities
+
