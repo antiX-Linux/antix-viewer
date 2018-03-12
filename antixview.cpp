@@ -39,7 +39,7 @@ MainWindow::MainWindow(QString url, QString title, QWidget *parent)
     searchBox = new QLineEdit(this);
     searchBox->setPlaceholderText(tr("search"));
     searchBox->setClearButtonEnabled(true);
-    searchBox->setMaximumWidth(150);
+    searchBox->setMaximumWidth(280);
     connect(searchBox,SIGNAL(textChanged(QString)),this, SLOT(findInPage()));
     connect(searchBox,SIGNAL(returnPressed()),this, SLOT(findInPage()));
 
@@ -57,8 +57,8 @@ MainWindow::~MainWindow()
 // pop up a window and display website
 void MainWindow::displaySite(QString url, QString title)
 {
-    int width = 800;
-    int height = 500;
+    int width = 780;
+    int height = 520;
 
     this->addToolBar(toolBar);
 
