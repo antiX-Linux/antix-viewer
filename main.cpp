@@ -39,7 +39,8 @@ int main(int argc, char *argv[])
     } else if (arg1 == "--help" or arg1 == "-h") {
         QMessageBox::information(0, QString::null,
                                  QApplication::tr("Usage: call program with: antix-view URL [window title]\n\n"
-                                                  "The 'antix-viewer' program will display the URL content in a window, window title is optional."));
+                                                  "The 'antix-viewer' program will display the URL content in a window, window title is optional.\n\n"
+                                                  "note: 'URL' destination can also be a local document or imagefile, e.g.  file:///path/to/local/file"));
         return 1;
     } else {
         url = argc > 1 ? QString(argv[1]) : QString();
