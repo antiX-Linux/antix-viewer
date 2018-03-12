@@ -34,7 +34,7 @@ int main(int argc, char *argv[])
     QString title;
 
     if (argc == 1) {
-        url = "http://google.com";
+        url = "http://duckduckgo.com";
         title = "antiX Viewer";
     } else if (arg1 == "--help" or arg1 == "-h") {
         QMessageBox::information(0, QString::null,
