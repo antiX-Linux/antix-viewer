@@ -1,5 +1,10 @@
+antix-viewer (0.1.1) unstable; urgency=medium
+  * replace license.html by license.txt
+  * debian/control: update Homepage and Desc
+  
+ -- anticapitalista <antix@operamail.com>  Mon, 12 Mar 2018 12:00:40 +0200
+ 
 antix-viewer (0.1.0) unstable; urgency=medium
-
   * Initial build
 
  -- anticapitalista <antix@operamail.com>  Wed, 21 Feb 2018 15:07:42 +0200
