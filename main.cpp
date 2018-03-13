@@ -24,6 +24,8 @@
 #include <QMessageBox>
 #include "antixview.h"
 
+#include <unistd.h>
+
 //  if all's well, this fn will return 1
 static int dropElevatedPrivileges()
 {
