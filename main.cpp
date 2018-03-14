@@ -24,6 +24,33 @@
 #include <QMessageBox>
 #include "antixview.h"
 
+#include <unistd.h>
+
+//  if all's well, this fn will return 1
+static int dropElevatedPrivileges()
+{
+    //   COULD check, and conditionally skip           if (getuid() == 0) || geteuid == 0)
+
+    //    initgroups()          catch22 ~~ cannot perform initgroups() unless we retrieve the uid
+    // ref:  https://www.safaribooksonline.com/library/view/secure-programming-cookbook/0596003943/ch01s03.html#secureprgckbk-CHP-1-SECT-3.3
+
+    //   change guid + uid   ~~  nobody (uid 65534), nogroup (gid 65534), users (gid 100)
+    if (setgid(65534) != 0) return 1;  //  ("Failed to set nonroot GID") so apparently NOT root
+    if (setuid(65534) != 0) return 1;  //  ("Failed to set nonroot UID") so apparently NOT root
+                                       // or failed due to brittle/flawed expectation that nobody and nogroup do exist
+
+    // On systems with defined _POSIX_SAVED_IDS in the unistd.h file,
+    // it should be impossible to regain elevated privs after the setuid() call, above.
+    // Test, try to regain elev priv:
+    if (setuid(0) != -1)  return 0;   // and the calling fn should EXIT/abort the program
+    //  COULD also confirm that setregid() fails
+
+    // change cwd, for good measure (if unable to, treat as overall failure)
+    if (chdir("/tmp") != 0)   return 0;  // consider fprint()ing or logging the failure reason
+
+    return 1;
+}
+
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
@@ -33,13 +60,20 @@ int main(int argc, char *argv[])
     QString url;
     QString title;
 
+    if(!dropElevatedPrivileges())
+    {
+        exit(1);  // log a reason, display a dialogbox?
+    }
+
     if (argc == 1) {
-        url = "http://google.com";
+        //url = "http://duckduckgo.com";
+        url = "file:///usr/share/doc/antix-viewer/README.md";
         title = "antiX Viewer";
     } else if (arg1 == "--help" or arg1 == "-h") {
         QMessageBox::information(0, QString::null,
-                                 QApplication::tr("Usage: call program with: antix-view URL [window title]\n\n"
-                                                  "The 'antix-viewer' program will display the URL content in a window, window title is optional."));
+            QApplication::tr("Usage: call program with:\n  antix-viewer destinationURL  [window title]\n\n"
+              "The 'antix-viewer' program will display the URL content in a window;\nwindow title is optional.\n\n"
+              "The destination 'URL' can also point to a local document or imagefile,\n\n e.g.  file:///path/to/local/file"));
         return 1;
     } else {
         url = argc > 1 ? QString(argv[1]) : QString();
