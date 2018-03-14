@@ -15,8 +15,7 @@ Package: antix-viewer
 Architecture: any
 Depends: ${misc:Depends}, ${shlibs:Depends}
 Replaces: mx-viewer
-Conflicts: mx-viewer
-Provides: x-www-browser 
+Provides: x-www-browser, mx-viewer
 Description: Displays a URL in a window
  antiX Viewer displays a URL in a new window. It is a utility program used by
  various antiX Linux utilities to display html helpdocs.
