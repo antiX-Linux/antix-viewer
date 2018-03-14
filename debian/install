@@ -1,3 +1,5 @@
 antix-viewer 		usr/bin
 antix-viewer.png 	usr/share/pixmaps
-license.html 		usr/share/doc/antix-viewer
+license.txt 		usr/share/doc/antix-viewer
+README.md           usr/share/doc/antix-viewer
+
